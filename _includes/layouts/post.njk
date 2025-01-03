@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+---
+
+{# Syntax highlighter CSS #}
+{%- css %}{% include "node_modules/prismjs/themes/prism-okaidia.css" %}{% endcss %}
+{%- css %}{% include "public/css/prism-diff.css" %}{%- endcss %}
+
+<h1 class="text-4xl font-extrabold text-gray-900 mb-6">{{ title }}</h1>
+
+<ul class="post-metadata text-gray-600 text-sm flex flex-wrap space-x-4 mb-8">
+	<li><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></li>
+	{%- for tag in tags | filterTagList %}
+	{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+	<li>
+		<a href="{{ tagUrl }}" class="post-tag text-blue-500 hover:underline">
+			#{{ tag }}
+		</a>{% if not loop.last %},{% endif %}
+	</li>
+	{%- endfor %}
+</ul>
+
+<div class="prose prose-lg max-w-none">
+	{{ content | safe }}
+</div>
+
+{%- if collections.posts %}
+{%- set previousPost = collections.posts | getPreviousCollectionItem %}
+{%- set nextPost = collections.posts | getNextCollectionItem %}
+{%- if nextPost or previousPost %}
+<ul class="links-nextprev flex justify-between mt-12 text-lg">
+	{%- if previousPost %}
+	<li class="links-nextprev-prev text-left">
+		<span class="text-gray-500 block">← Previous</span>
+		<a href="{{ previousPost.url }}" class="text-blue-600 hover:text-blue-800 font-semibold">
+			{{ previousPost.data.title }}
+		</a>
+	</li>
+	{% endif %}
+	{%- if nextPost %}
+	<li class="links-nextprev-next text-right">
+		<span class="text-gray-500 block">Next →</span>
+		<a href="{{ nextPost.url }}" class="text-blue-600 hover:text-blue-800 font-semibold">
+			{{ nextPost.data.title }}
+		</a>
+	</li>
+	{% endif %}
+</ul>
+{%- endif %}
+{%- endif %}

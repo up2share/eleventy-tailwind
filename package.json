@@ -1,0 +1,60 @@
+{
+	"name": "eleventy-base-blog",
+	"version": "9.0.0",
+	"description": "A starter repository for a blog web site using the Eleventy site generator.",
+	"type": "module",
+	"scripts": {
+		"build": "npm run tailwindcss:build && npx @11ty/eleventy",
+		"build-nocolor": "cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy",
+		"build-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/",
+		"start": "npx @11ty/eleventy --serve --quiet",
+		"start-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/ --serve --quiet",
+		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
+		"debugstart": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
+		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
+		"tailwindcss:build": "npx tailwindcss -i ./_includes/css/tailwind.css -o ./public/css/tailwind.css",
+		"tailwindcss:watch": "npx tailwindcss -i ./_includes/css/tailwind.css -o ./public/css/tailwind.css --watch",
+		"eleventy:watch": "npx @11ty/eleventy --serve --watch --quiet",
+		"dev": "concurrently --prefix \"[{name}]\" --names \"Tailwind,Eleventy\" \"npm run tailwindcss:watch\" \"npm run eleventy:watch\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/11ty/eleventy-base-blog.git"
+	},
+	"author": {
+		"name": "Zach Leatherman",
+		"email": "zachleatherman@gmail.com",
+		"url": "https://zachleat.com/"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=18"
+	},
+	"funding": {
+		"type": "opencollective",
+		"url": "https://opencollective.com/11ty"
+	},
+	"bugs": {
+		"url": "https://github.com/11ty/eleventy-base-blog/issues"
+	},
+	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
+	"devDependencies": {
+		"@11ty/eleventy": "^3.0.0",
+		"@11ty/eleventy-img": "^5.0.0",
+		"@11ty/eleventy-navigation": "^0.3.5",
+		"@11ty/eleventy-plugin-rss": "^2.0.2",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+		"@tailwindcss/typography": "^0.5.15",
+		"autoprefixer": "^10.4.20",
+		"concurrently": "^9.1.2",
+		"cross-env": "^7.0.3",
+		"luxon": "^3.5.0",
+		"postcss": "^8.4.49",
+		"tailwindcss": "^3.4.17",
+		"zod": "^3.23.8",
+		"zod-validation-error": "^3.3.1"
+	},
+	"dependencies": {
+		"@zachleat/heading-anchors": "^1.0.1"
+	}
+}
