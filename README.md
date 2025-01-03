@@ -1,4 +1,4 @@
-# eleventy-base-blog v9
+# eleventy-tailwind
 
 A starter repository showing how to build a blog with the [Eleventy](https://www.11ty.dev/) site generator (using the [v3.0 release](https://github.com/11ty/eleventy/releases/tag/v3.0.0)).
 
@@ -16,7 +16,7 @@ cd my-blog-name
 2. Clone this Repository
 
 ```
-git clone https://github.com/11ty/eleventy-base-blog.git .
+git clone https://github.com/up2share/eleventy-tailwind.git .
 ```
 
 _Optional:_ Review `eleventy.config.js` and `_data/metadata.js` to configure the site’s options and data.
@@ -32,13 +32,13 @@ npm install
 Generate a production-ready build to the `_site` folder:
 
 ```
-npx @11ty/eleventy
+rpm run build
 ```
 
 Or build and host on a local development server:
 
 ```
-npx @11ty/eleventy --serve
+npm run dev
 ```
 
 Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the internals.
@@ -78,13 +78,13 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 	- Zero-maintenance tag pages ([View on the Demo](https://eleventy-base-blog.netlify.app/tags/))
 	- Content not found (404) page
 
-## Demos
+<!-- ## Demos
 
 - [Netlify](https://eleventy-base-blog.netlify.app/)
 - [Vercel](https://demo-base-blog.11ty.dev/)
 - [Cloudflare Pages](https://eleventy-base-blog-d2a.pages.dev/)
 - [Remix on Glitch](https://glitch.com/~11ty-eleventy-base-blog)
-- [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
+- [GitHub Pages](https://11ty.github.io/eleventy-base-blog/) -->
 
 ## Deploy this to your own site
 
