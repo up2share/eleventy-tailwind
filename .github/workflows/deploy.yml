@@ -1,0 +1,47 @@
+name: Build and Deploy to Up2Share
+
+on:
+  push:
+    branches:
+      - main # Trigger only on pushes to the main branch
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build the project
+      - name: Build project
+        run: npm run build
+
+      # Zip the built site
+      - name: Zip built site
+        run: |
+          cd _site
+          zip -r ../site.zip ./*
+
+      # Deploy to Up2Share
+      - name: Deploy to Up2Share
+        env:
+          WEBSITE_ID: ${{ secrets.UP2SHARE_WEBSITE_ID }}
+          API_KEY: ${{ secrets.UP2SHARE_API_KEY }}
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer $API_KEY" \
+            -F "file=@./site.zip" \
+            https://api.up2sha.re/v1/static-websites/$WEBSITE_ID/deployments
