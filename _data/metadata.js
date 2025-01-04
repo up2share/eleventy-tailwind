@@ -1,6 +1,6 @@
 export default {
 	title: "Eleventy Base Blog + Tailwind CSS",
-	url: "https://elevently.up2share.site/",
+	url: "https://eleventy-tailwind.up2share.site/",
 	language: "en",
 	description: "A blog template using Eleventy and Tailwind CSS",
 	author: {
